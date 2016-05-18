@@ -63,7 +63,7 @@ FILE                                                       PACKAGE             B
 /usr/lib/lua/5.3/rex_posix.so.2.8                          lua5.3-rex-posix    v3.3                main                x86_64
 ```
 
-```
+```console
 $ apk-file bin/file
 FILE                                                                  PACKAGE             BRANCH              REPOSITORY          ARCHITECTURE
 /usr/lib/erlang/lib/gs-1.6/examples/ebin/file_dialog.beam             erlang-gs           edge                community           armhf

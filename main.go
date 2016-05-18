@@ -77,20 +77,15 @@ func init() {
 	if repo != "" && !stringInSlice(repo, validRepos) {
 		logrus.Fatalf("%s is not a valid repo", repo)
 	}
-
-	if flag.NArg() < 1 {
-		logrus.Fatal("must pass a file to search for.")
-	}
 }
 
 func main() {
-	arg := flag.Arg(0)
-	f := "*" + path.Base(arg) + "*"
-	p := path.Dir(arg)
-	if p != "" {
-		p = "*" + p
-		f = strings.TrimPrefix(f, "*")
+	if flag.NArg() < 1 {
+		logrus.Fatal("must pass a file to search for.")
 	}
+
+	f, p := getFileAndPath(flag.Arg(0))
+
 	query := url.Values{
 		"file":   {f},
 		"path":   {p},
@@ -146,6 +141,18 @@ func usageAndExit(message string, exitCode int) {
 	flag.Usage()
 	fmt.Fprintf(os.Stderr, "\n")
 	os.Exit(exitCode)
+}
+
+func getFileAndPath(arg string) (file string, dir string) {
+	file = "*" + path.Base(arg) + "*"
+	dir = path.Dir(arg)
+	if dir != "" && dir != "." {
+		dir = "*" + dir
+		file = strings.TrimPrefix(file, "*")
+	} else {
+		dir = ""
+	}
+	return file, dir
 }
 
 func stringInSlice(a string, list []string) bool {
