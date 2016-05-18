@@ -107,8 +107,6 @@ func main() {
 
 	// create the writer
 	w := tabwriter.NewWriter(os.Stdout, 20, 1, 3, ' ', 0)
-	fmt.Fprint(os.Stdout, "\033[2J")
-	fmt.Fprint(os.Stdout, "\033[H")
 	io.WriteString(w, "FILE\tPACKAGE\tBRANCH\tREPOSITORY\tARCHITECTURE\n")
 
 	doc.Find(".table tr").Each(func(j int, l *goquery.Selection) {
