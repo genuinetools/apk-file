@@ -33,6 +33,10 @@ const (
 	alpineContentsSearchURI = "https://pkgs.alpinelinux.org/contents"
 )
 
+type fileInfo struct {
+	path, pkg, branch, repo, arch string
+}
+
 var (
 	arch string
 	repo string
@@ -104,32 +108,17 @@ func main() {
 	w := tabwriter.NewWriter(os.Stdout, 20, 1, 3, ' ', 0)
 	io.WriteString(w, "FILE\tPACKAGE\tBRANCH\tREPOSITORY\tARCHITECTURE\n")
 
-	doc.Find(".table tr").Each(func(j int, l *goquery.Selection) {
-		var file, pkg, branch, repository, architecture string
-		rows := l.Find("td")
-		rows.Each(func(i int, s *goquery.Selection) {
-			switch i {
-			case 0:
-				file = s.Text()
-			case 1:
-				pkg = s.Text()
-			case 2:
-				branch = s.Text()
-			case 3:
-				repository = s.Text()
-			case 4:
-				architecture = s.Text()
-			}
-		})
-		if rows.Size() > 0 {
-			fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n",
-				file,
-				pkg,
-				branch,
-				repository,
-				architecture)
-		}
-	})
+	files := getFilesInfo(doc)
+
+	for _, f := range files {
+		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n",
+			f.path,
+			f.pkg,
+			f.branch,
+			f.repo,
+			f.arch)
+	}
+
 	w.Flush()
 }
 
@@ -141,6 +130,32 @@ func usageAndExit(message string, exitCode int) {
 	flag.Usage()
 	fmt.Fprintf(os.Stderr, "\n")
 	os.Exit(exitCode)
+}
+
+func getFilesInfo(d *goquery.Document) []fileInfo {
+	files := []fileInfo{}
+	d.Find(".table tr:not(:first-child)").Each(func(j int, l *goquery.Selection) {
+		f := fileInfo{}
+		rows := l.Find("td")
+		rows.Each(func(i int, s *goquery.Selection) {
+			switch i {
+			case 0:
+				f.path = s.Text()
+			case 1:
+				f.pkg = s.Text()
+			case 2:
+				f.branch = s.Text()
+			case 3:
+				f.repo = s.Text()
+			case 4:
+				f.arch = s.Text()
+			default:
+				logrus.Warn("Unmapped value for column %d with value %s", i, s.Text())
+			}
+		})
+		files = append(files, f)
+	})
+	return files
 }
 
 func getFileAndPath(arg string) (file string, dir string) {
