@@ -1,6 +1,6 @@
 # apk-file
 
-[![Travis CI](https://travis-ci.org/jfrazelle/apk-file.svg?branch=master)](https://travis-ci.org/jfrazelle/apk-file)
+[![Travis CI](https://travis-ci.org/jessfraz/apk-file.svg?branch=master)](https://travis-ci.org/jessfraz/apk-file)
 
 Search apk packages via the command line.
 
