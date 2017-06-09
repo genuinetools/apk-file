@@ -16,7 +16,13 @@ Search apk packages via the command line.
 - **solaris** [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-solaris-amd64)
 - **windows** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-windows-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-windows-amd64)
 
-**Usage**
+#### Via Go
+
+```bash
+$ go get github.com/jessfraz/apk-file
+```
+
+## Usage
 
 ```console
 $ apk-file posix.so
