@@ -12,6 +12,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Sirupsen/logrus"
+	"github.com/jessfraz/apk-file/version"
 )
 
 const (
@@ -27,9 +28,6 @@ const (
  Version: %s
 
 `
-	// VERSION is the binary version.
-	VERSION = "v0.1.0"
-
 	alpineContentsSearchURI = "https://pkgs.alpinelinux.org/contents"
 )
 
@@ -41,8 +39,8 @@ var (
 	arch string
 	repo string
 
-	debug   bool
-	version bool
+	debug bool
+	vrsn  bool
 
 	validArches = []string{"x86", "x86_64", "armhf"}
 	validRepos  = []string{"main", "community", "testing"}
@@ -53,19 +51,19 @@ func init() {
 	flag.StringVar(&arch, "arch", "", "arch to search for ("+strings.Join(validArches, ", ")+")")
 	flag.StringVar(&repo, "repo", "", "repository to search in ("+strings.Join(validRepos, ", ")+")")
 
-	flag.BoolVar(&version, "version", false, "print version and exit")
-	flag.BoolVar(&version, "v", false, "print version and exit (shorthand)")
+	flag.BoolVar(&vrsn, "version", false, "print version and exit")
+	flag.BoolVar(&vrsn, "v", false, "print version and exit (shorthand)")
 	flag.BoolVar(&debug, "d", false, "run in debug mode")
 
 	flag.Usage = func() {
-		fmt.Fprint(os.Stderr, fmt.Sprintf(BANNER, VERSION))
+		fmt.Fprint(os.Stderr, fmt.Sprintf(BANNER, version.VERSION))
 		flag.PrintDefaults()
 	}
 
 	flag.Parse()
 
-	if version {
-		fmt.Printf("%s", VERSION)
+	if vrsn {
+		fmt.Printf("apk-file version %s, build %s", version.VERSION, version.GITCOMMIT)
 		os.Exit(0)
 	}
 
