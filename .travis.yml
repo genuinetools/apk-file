@@ -7,6 +7,7 @@
     - 1.6.x
     - 1.7.x
     - 1.8.x
+    - 1.9.x
     - tip
   env:
     global:
@@ -24,7 +25,6 @@
     provider: releases
     api_key:
       secure: "Yf3XI7nLyfbd/KLv3trryW+HaXpEsRHpD/5dCFDyBWbsOarGgvXVw8vB470vkxia6aywOUztRM/dV2W3VcpISgaCKQUuvYSA9zV1tUDiwlHCKvoRRhEo1cJe9fgUX4MZpuh/3gSSh3Ja5xg1U83pCQpufryGCJb2hN08rbkcftQKZh4LQy1fB4luzXuk1MgQ4RP0r7sM1pep2xcG9QlB8wKEVilWOBSjMhtV4ybX5s8WsqSGx5z/Cywg+pAS+VpfdPhVQ3mElDYkr3dbFqQk2Zeh/0nxfV+6VVg7mY75lq+uahBMJS1mMTFpdCx66vEWi6Tif1SAGjCWeJVi33/0/CL9Lv9AHivd/8ElWEnA3yQjnvYZwGktm2EKQw/9HA4lPZsKjOwb0DKeSz3aWUIsTt2/lmEoECAxWfyrIv0l3b7FhWCq+ILpN/Da6GoWm8zGZMFZ5urJRiLxnvf/GUo8PWIHIqHa8iUSEl6xcFswtz0C/PX1g8thuKbB/zAzw/v32bYd71MR23BZIxkODlG6sUgTqRWnOcheYGGpHOZZp6bXJ02GmGks07+1HZVojMo5P+CAKvANjHNdf/sSg/TCZcWjrjqH6HivYCJNz8YmC6yigeWqk4aO9Fww4Nk6wSdo+Jsc6Il/0BwBkNvi2vRiVZtWHKfvy4RQ26iaFR2/gV4="
-    go: 1.8.x
     file:
       - cross/apk-file-linux-amd64.md5
       - cross/apk-file-windows-386.sha256
@@ -61,4 +61,5 @@
       - cross/apk-file-linux-amd64
     skip_cleanup: true
     on:
+      go: 1.9.x
       tags: true
