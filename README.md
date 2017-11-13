@@ -10,11 +10,11 @@ Search apk packages via the command line.
 
 #### Binaries
 
-- **darwin** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-darwin-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-darwin-amd64)
-- **freebsd** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-freebsd-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-freebsd-amd64)
-- **linux** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-linux-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-linux-amd64) / [arm](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-linux-arm) / [arm64](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-linux-arm64)
-- **solaris** [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-solaris-amd64)
-- **windows** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-windows-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.1/apk-file-windows-amd64)
+- **darwin** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-darwin-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-darwin-amd64)
+- **freebsd** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-freebsd-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-freebsd-amd64)
+- **linux** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-linux-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-linux-amd64) / [arm](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-linux-arm) / [arm64](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-linux-arm64)
+- **solaris** [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-solaris-amd64)
+- **windows** [386](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-windows-386) / [amd64](https://github.com/jessfraz/apk-file/releases/download/v0.1.2/apk-file-windows-amd64)
 
 #### Via Go
 
