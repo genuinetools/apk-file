@@ -11,8 +11,8 @@ import (
 	"text/tabwriter"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/Sirupsen/logrus"
 	"github.com/jessfraz/apk-file/version"
+	"github.com/sirupsen/logrus"
 )
 
 const (
