@@ -132,7 +132,7 @@ func usageAndExit(message string, exitCode int) {
 
 func getFilesInfo(d *goquery.Document) []fileInfo {
 	files := []fileInfo{}
-	d.Find(".table tr:not(:first-child)").Each(func(j int, l *goquery.Selection) {
+	d.Find(".pure-table tr:not(:first-child)").Each(func(j int, l *goquery.Selection) {
 		f := fileInfo{}
 		rows := l.Find("td")
 		rows.Each(func(i int, s *goquery.Selection) {
