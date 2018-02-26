@@ -36,7 +36,7 @@ func TestGetFileAndPath(t *testing.T) {
 
 func TestParseHTML(t *testing.T) {
 	searchResults := `
-<table class="table table-striped table-bordered table-condensed" data-toggle="table">
+<table class="pure-table table-striped table-bordered table-condensed" data-toggle="table">
     <tbody>
 	<tr>
 	    <th>File</th>
