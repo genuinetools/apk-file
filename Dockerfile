@@ -7,7 +7,7 @@ ENV GOPATH /go
 RUN	apk add --no-cache \
 	ca-certificates
 
-COPY . /go/src/github.com/jessfraz/apk-file
+COPY . /go/src/github.com/genuinetools/apk-file
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
@@ -16,7 +16,7 @@ RUN set -x \
 		libc-dev \
 		libgcc \
 		make \
-	&& cd /go/src/github.com/jessfraz/apk-file \
+	&& cd /go/src/github.com/genuinetools/apk-file \
 	&& make static \
 	&& mv apk-file /usr/bin/apk-file \
 	&& apk del .build-deps \
