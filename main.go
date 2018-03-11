@@ -120,16 +120,6 @@ func main() {
 	w.Flush()
 }
 
-func usageAndExit(message string, exitCode int) {
-	if message != "" {
-		fmt.Fprintf(os.Stderr, message)
-		fmt.Fprintf(os.Stderr, "\n\n")
-	}
-	flag.Usage()
-	fmt.Fprintf(os.Stderr, "\n")
-	os.Exit(exitCode)
-}
-
 func getFilesInfo(d *goquery.Document) []fileInfo {
 	files := []fileInfo{}
 	d.Find(".pure-table tr:not(:first-child)").Each(func(j int, l *goquery.Selection) {
