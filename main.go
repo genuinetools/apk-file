@@ -11,7 +11,7 @@ import (
 	"text/tabwriter"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/jessfraz/apk-file/version"
+	"github.com/genuinetools/apk-file/version"
 	"github.com/sirupsen/logrus"
 )
 
