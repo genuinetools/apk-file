@@ -4,8 +4,8 @@
 [[projects]]
   name = "github.com/PuerkitoBio/goquery"
   packages = ["."]
-  revision = "a86ea073017a6beddef78c8659e7224e8ca634b0"
-  version = "v1.4.0"
+  revision = "dc2ec5c7ca4d9aae063b79b9f581dd3ea6afd2b2"
+  version = "v1.4.1"
 
 [[projects]]
   name = "github.com/andybalholm/cascadia"
@@ -23,7 +23,7 @@
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
-  revision = "2d027ae1dddd4694d54f7a8b6cbe78dca8720226"
+  revision = "8ac0e0d97ce45cd83d1d7243c060cb8461dda5e9"
 
 [[projects]]
   branch = "master"
@@ -32,7 +32,7 @@
     "html",
     "html/atom"
   ]
-  revision = "2491c5de3490fced2f6cff376127c667efeed857"
+  revision = "1e491301e022f8f977054da4c2d852decd59571f"
 
 [[projects]]
   branch = "master"
@@ -41,7 +41,7 @@
     "unix",
     "windows"
   ]
-  revision = "d0faeb539838e250bd0a9db4182d48d4a1915181"
+  revision = "bff228c7b664c5fce602223a05fb708fd8654986"
 
 [solve-meta]
   analyzer-name = "dep"

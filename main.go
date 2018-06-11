@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"net/http"
 	"net/url"
 	"os"
 	"path"
@@ -97,9 +98,14 @@ func main() {
 	}
 
 	uri := fmt.Sprintf("%s?%s", alpineContentsSearchURI, query.Encode())
-	doc, err := goquery.NewDocument(uri)
+	resp, err := http.Get(uri)
 	if err != nil {
 		logrus.Fatalf("requesting %s failed: %v", uri, err)
+	}
+	defer resp.Body.Close()
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	if err != nil {
+		logrus.Fatalf("creating document failed: %v", err)
 	}
 
 	// create the writer
