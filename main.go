@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+	"errors"
 	"flag"
 	"fmt"
 	"io"
@@ -13,22 +15,11 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/genuinetools/apk-file/version"
+	"github.com/genuinetools/pkg/cli"
 	"github.com/sirupsen/logrus"
 )
 
 const (
-	// BANNER is what is printed for help/info output
-	BANNER = `             _          __ _ _
-  __ _ _ __ | | __     / _(_) | ___
- / _` + "`" + ` | '_ \| |/ /____| |_| | |/ _ \
-| (_| | |_) |   <_____|  _| | |  __/
- \__,_| .__/|_|\_\    |_| |_|_|\___|
-      |_|
-
- Search apk package contents via the command line.
- Version: %s
-
-`
 	alpineContentsSearchURI = "https://pkgs.alpinelinux.org/contents"
 )
 
@@ -41,89 +32,95 @@ var (
 	repo string
 
 	debug bool
-	vrsn  bool
 
 	validArches = []string{"x86", "x86_64", "armhf"}
 	validRepos  = []string{"main", "community", "testing"}
 )
 
-func init() {
-	// Parse flags
-	flag.StringVar(&arch, "arch", "", "arch to search for ("+strings.Join(validArches, ", ")+")")
-	flag.StringVar(&repo, "repo", "", "repository to search in ("+strings.Join(validRepos, ", ")+")")
-
-	flag.BoolVar(&vrsn, "version", false, "print version and exit")
-	flag.BoolVar(&vrsn, "v", false, "print version and exit (shorthand)")
-	flag.BoolVar(&debug, "d", false, "run in debug mode")
-
-	flag.Usage = func() {
-		fmt.Fprint(os.Stderr, fmt.Sprintf(BANNER, version.VERSION))
-		flag.PrintDefaults()
-	}
-
-	flag.Parse()
-
-	if vrsn {
-		fmt.Printf("apk-file version %s, build %s", version.VERSION, version.GITCOMMIT)
-		os.Exit(0)
-	}
-
-	// Set log level
-	if debug {
-		logrus.SetLevel(logrus.DebugLevel)
-	}
-
-	if arch != "" && !stringInSlice(arch, validArches) {
-		logrus.Fatalf("%s is not a valid arch", arch)
-	}
-
-	if repo != "" && !stringInSlice(repo, validRepos) {
-		logrus.Fatalf("%s is not a valid repo", repo)
-	}
-}
-
 func main() {
-	if flag.NArg() < 1 {
-		logrus.Fatal("must pass a file to search for.")
+	// Create a new cli program.
+	p := cli.NewProgram()
+	p.Name = "apk-file"
+	p.Description = "Search apk package contents via the command line"
+
+	// Set the GitCommit and Version.
+	p.GitCommit = version.GITCOMMIT
+	p.Version = version.VERSION
+
+	// Setup the global flags.
+	p.FlagSet = flag.NewFlagSet("global", flag.ExitOnError)
+	p.FlagSet.StringVar(&arch, "arch", "", "arch to search for ("+strings.Join(validArches, ", ")+")")
+	p.FlagSet.StringVar(&repo, "repo", "", "repository to search in ("+strings.Join(validRepos, ", ")+")")
+	p.FlagSet.BoolVar(&debug, "d", false, "enable debug logging")
+
+	// Set the before function.
+	p.Before = func(ctx context.Context) error {
+		// Set the log level.
+		if debug {
+			logrus.SetLevel(logrus.DebugLevel)
+		}
+
+		if arch != "" && !stringInSlice(arch, validArches) {
+			return fmt.Errorf("%s is not a valid arch", arch)
+		}
+
+		if repo != "" && !stringInSlice(repo, validRepos) {
+			return fmt.Errorf("%s is not a valid repo", repo)
+		}
+
+		return nil
 	}
 
-	f, p := getFileAndPath(flag.Arg(0))
+	// Set the main program action.
+	p.Action = func(ctx context.Context) error {
+		if p.FlagSet.NArg() < 1 {
+			return errors.New("must pass a file to search for")
+		}
 
-	query := url.Values{
-		"file":   {f},
-		"path":   {p},
-		"branch": {""},
-		"repo":   {repo},
-		"arch":   {arch},
+		f, p := getFileAndPath(p.FlagSet.Arg(0))
+
+		query := url.Values{
+			"file":   {f},
+			"path":   {p},
+			"branch": {""},
+			"repo":   {repo},
+			"arch":   {arch},
+		}
+
+		uri := fmt.Sprintf("%s?%s", alpineContentsSearchURI, query.Encode())
+		logrus.Debugf("requesting from %s", uri)
+		resp, err := http.Get(uri)
+		if err != nil {
+			logrus.Fatalf("requesting %s failed: %v", uri, err)
+		}
+		defer resp.Body.Close()
+		doc, err := goquery.NewDocumentFromReader(resp.Body)
+		if err != nil {
+			logrus.Fatalf("creating document failed: %v", err)
+		}
+
+		// create the writer
+		w := tabwriter.NewWriter(os.Stdout, 20, 1, 3, ' ', 0)
+		io.WriteString(w, "FILE\tPACKAGE\tBRANCH\tREPOSITORY\tARCHITECTURE\n")
+
+		files := getFilesInfo(doc)
+
+		for _, f := range files {
+			fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n",
+				f.path,
+				f.pkg,
+				f.branch,
+				f.repo,
+				f.arch)
+		}
+
+		w.Flush()
+
+		return nil
 	}
 
-	uri := fmt.Sprintf("%s?%s", alpineContentsSearchURI, query.Encode())
-	resp, err := http.Get(uri)
-	if err != nil {
-		logrus.Fatalf("requesting %s failed: %v", uri, err)
-	}
-	defer resp.Body.Close()
-	doc, err := goquery.NewDocumentFromReader(resp.Body)
-	if err != nil {
-		logrus.Fatalf("creating document failed: %v", err)
-	}
-
-	// create the writer
-	w := tabwriter.NewWriter(os.Stdout, 20, 1, 3, ' ', 0)
-	io.WriteString(w, "FILE\tPACKAGE\tBRANCH\tREPOSITORY\tARCHITECTURE\n")
-
-	files := getFilesInfo(doc)
-
-	for _, f := range files {
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n",
-			f.path,
-			f.pkg,
-			f.branch,
-			f.repo,
-			f.arch)
-	}
-
-	w.Flush()
+	// Run our program.
+	p.Run()
 }
 
 func getFilesInfo(d *goquery.Document) []fileInfo {
