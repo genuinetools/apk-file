@@ -1,6 +1,8 @@
 # apk-file
 
-[![Travis CI](https://travis-ci.org/genuinetools/apk-file.svg?branch=master)](https://travis-ci.org/genuinetools/apk-file)
+[![Travis CI](https://img.shields.io/travis/genuinetools/apk-file.svg?style=for-the-badge)](https://travis-ci.org/genuinetools/apk-file)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-5272B4.svg?style=for-the-badge)](https://godoc.org/github.com/genuinetools/apk-file)
+[![Github All Releases](https://img.shields.io/github/downloads/genuinetools/apk-file/total.svg?style=for-the-badge)](https://github.com/genuinetools/apk-file/releases)
 
 Search apk packages via the command line.
 
@@ -10,15 +12,11 @@ Search apk packages via the command line.
 
 #### Binaries
 
-- **darwin** [386](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-darwin-386) / [amd64](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-darwin-amd64)
-- **freebsd** [386](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-freebsd-386) / [amd64](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-freebsd-amd64)
-- **linux** [386](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-linux-386) / [amd64](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-linux-amd64) / [arm](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-linux-arm) / [arm64](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-linux-arm64)
-- **solaris** [amd64](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-solaris-amd64)
-- **windows** [386](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-windows-386) / [amd64](https://github.com/genuinetools/apk-file/releases/download/v0.3.2/apk-file-windows-amd64)
+For installation instructions from binaries please visit the [Releases Page](https://github.com/genuinetools/apk-file/releases).
 
 #### Via Go
 
-```bash
+```console
 $ go get github.com/genuinetools/apk-file
 ```
 

@@ -18,39 +18,39 @@ jobs:
       deploy:
         provider: releases
         file:
-          - cross/apk-file-linux-amd64.md5
-          - cross/apk-file-windows-386.sha256
-          - cross/apk-file-linux-arm
-          - cross/apk-file-darwin-amd64.md5
           - cross/apk-file-darwin-amd64
-          - cross/apk-file-solaris-amd64.md5
-          - cross/apk-file-linux-arm64.sha256
-          - cross/apk-file-linux-arm.sha256
-          - cross/apk-file-linux-386.sha256
+          - cross/apk-file-darwin-amd64.md5
+          - cross/apk-file-darwin-amd64.sha256
+          - cross/apk-file-darwin-386
           - cross/apk-file-darwin-386.md5
-          - cross/apk-file-windows-386.md5
+          - cross/apk-file-darwin-386.sha256
+          - cross/apk-file-freebsd-amd64
           - cross/apk-file-freebsd-amd64.md5
-          - cross/apk-file-linux-arm64.md5
-          - cross/apk-file-linux-arm64
           - cross/apk-file-freebsd-amd64.sha256
-          - cross/apk-file-freebsd-386.md5
-          - cross/apk-file-linux-amd64.sha256
-          - cross/apk-file-linux-386.md5
           - cross/apk-file-freebsd-386
+          - cross/apk-file-freebsd-386.md5
+          - cross/apk-file-freebsd-386.sha256
+          - cross/apk-file-linux-arm
+          - cross/apk-file-linux-arm.md5
+          - cross/apk-file-linux-arm.sha256
+          - cross/apk-file-linux-arm64
+          - cross/apk-file-linux-arm64.md5
+          - cross/apk-file-linux-arm64.sha256
+          - cross/apk-file-linux-amd64
+          - cross/apk-file-linux-amd64.md5
+          - cross/apk-file-linux-amd64.sha256
+          - cross/apk-file-linux-386
+          - cross/apk-file-linux-386.md5
+          - cross/apk-file-linux-386.sha256
+          - cross/apk-file-solaris-amd64
+          - cross/apk-file-solaris-amd64.md5
           - cross/apk-file-solaris-amd64.sha256
           - cross/apk-file-windows-amd64
           - cross/apk-file-windows-amd64.md5
           - cross/apk-file-windows-amd64.sha256
-          - cross/apk-file-linux-arm.md5
-          - cross/apk-file-darwin-386.sha256
-          - cross/apk-file-darwin-amd64.sha256
           - cross/apk-file-windows-386
-          - cross/apk-file-solaris-amd64
-          - cross/apk-file-darwin-386
-          - cross/apk-file-linux-386
-          - cross/apk-file-freebsd-amd64
-          - cross/apk-file-freebsd-386.sha256
-          - cross/apk-file-linux-amd64
+          - cross/apk-file-windows-386.md5
+          - cross/apk-file-windows-386.sha256
         skip_cleanup: true
         on:
           tags: true
