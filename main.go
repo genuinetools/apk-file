@@ -74,11 +74,11 @@ func main() {
 
 	// Set the main program action.
 	p.Action = func(ctx context.Context, args []string) error {
-		if p.FlagSet.NArg() < 1 {
+		if len(args) < 1 {
 			return errors.New("must pass a file to search for")
 		}
 
-		f, p := getFileAndPath(p.FlagSet.Arg(0))
+		f, p := getFileAndPath(args[0])
 
 		query := url.Values{
 			"file":   {f},
