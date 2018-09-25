@@ -1,0 +1,16 @@
+# github.com/PuerkitoBio/goquery v1.4.1
+github.com/PuerkitoBio/goquery
+# github.com/andybalholm/cascadia v1.0.0
+github.com/andybalholm/cascadia
+# github.com/genuinetools/pkg v0.0.0-20180910213200-1c141f661797
+github.com/genuinetools/pkg/cli
+# github.com/sirupsen/logrus v1.0.6
+github.com/sirupsen/logrus
+# golang.org/x/crypto v0.0.0-20180910181607-0e37d006457b
+golang.org/x/crypto/ssh/terminal
+# golang.org/x/net v0.0.0-20180925072008-f04abc6bdfa7
+golang.org/x/net/html
+golang.org/x/net/html/atom
+# golang.org/x/sys v0.0.0-20180924175946-90868a75fefd
+golang.org/x/sys/unix
+golang.org/x/sys/windows
