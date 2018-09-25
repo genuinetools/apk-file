@@ -52,6 +52,7 @@ func main() {
 	p.FlagSet.StringVar(&arch, "arch", "", "arch to search for ("+strings.Join(validArches, ", ")+")")
 	p.FlagSet.StringVar(&repo, "repo", "", "repository to search in ("+strings.Join(validRepos, ", ")+")")
 	p.FlagSet.BoolVar(&debug, "d", false, "enable debug logging")
+	p.FlagSet.BoolVar(&debug, "debug", false, "enable debug logging")
 
 	// Set the before function.
 	p.Before = func(ctx context.Context) error {
@@ -60,11 +61,11 @@ func main() {
 			logrus.SetLevel(logrus.DebugLevel)
 		}
 
-		if arch != "" && !stringInSlice(arch, validArches) {
+		if arch != "" && !in(arch, validArches) {
 			return fmt.Errorf("%s is not a valid arch", arch)
 		}
 
-		if repo != "" && !stringInSlice(repo, validRepos) {
+		if repo != "" && !in(repo, validRepos) {
 			return fmt.Errorf("%s is not a valid repo", repo)
 		}
 
@@ -72,7 +73,7 @@ func main() {
 	}
 
 	// Set the main program action.
-	p.Action = func(ctx context.Context) error {
+	p.Action = func(ctx context.Context, args []string) error {
 		if p.FlagSet.NArg() < 1 {
 			return errors.New("must pass a file to search for")
 		}
@@ -141,7 +142,7 @@ func getFilesInfo(d *goquery.Document) []fileInfo {
 			case 4:
 				f.arch = s.Text()
 			default:
-				logrus.Warn("Unmapped value for column %d with value %s", i, s.Text())
+				logrus.Warnf("Unmapped value for column %d with value %s", i, s.Text())
 			}
 		})
 		files = append(files, f)
@@ -161,7 +162,7 @@ func getFileAndPath(arg string) (file string, dir string) {
 	return file, dir
 }
 
-func stringInSlice(a string, list []string) bool {
+func in(a string, list []string) bool {
 	for _, b := range list {
 		if b == a {
 			return true
