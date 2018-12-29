@@ -8,6 +8,10 @@ Search apk packages via the command line.
 
 > Basically `apt-file` but for alpine.
 
+<!-- toc -->
+
+<!-- tocstop -->
+
 ## Installation
 
 #### Binaries
