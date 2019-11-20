@@ -1,6 +1,7 @@
 # apk-file
 
-[![Travis CI](https://img.shields.io/travis/genuinetools/apk-file.svg?style=for-the-badge)](https://travis-ci.org/genuinetools/apk-file)
+![make-all](https://github.com/genuinetools/apk-file/workflows/make%20all/badge.svg)
+![make-image](https://github.com/genuinetools/apk-file/workflows/make%20image/badge.svg)
 [![GoDoc](https://img.shields.io/badge/godoc-reference-5272B4.svg?style=for-the-badge)](https://godoc.org/github.com/genuinetools/apk-file)
 [![Github All Releases](https://img.shields.io/github/downloads/genuinetools/apk-file/total.svg?style=for-the-badge)](https://github.com/genuinetools/apk-file/releases)
 
@@ -8,14 +9,8 @@ Search apk packages via the command line.
 
 > Basically `apt-file` but for alpine.
 
-<!-- toc -->
-
-- [Installation](#installation)
-    + [Binaries](#binaries)
-    + [Via Go](#via-go)
-- [Usage](#usage)
-
-<!-- tocstop -->
+<!-- START doctoc -->
+<!-- END doctoc -->
 
 ## Installation
 
