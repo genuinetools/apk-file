@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [cascadia](#cascadia)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # cascadia
 
 [![](https://travis-ci.org/andybalholm/cascadia.svg)](https://travis-ci.org/andybalholm/cascadia)

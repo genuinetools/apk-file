@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [goquery - a little like that j-thing, only in Go](#goquery---a-little-like-that-j-thing-only-in-go)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Changelog](#changelog)
+  - [API](#api)
+  - [Examples](#examples)
+  - [Related Projects](#related-projects)
+  - [Support](#support)
+  - [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # goquery - a little like that j-thing, only in Go
 [![build status](https://secure.travis-ci.org/PuerkitoBio/goquery.svg?branch=master)](http://travis-ci.org/PuerkitoBio/goquery) [![GoDoc](https://godoc.org/github.com/PuerkitoBio/goquery?status.png)](http://godoc.org/github.com/PuerkitoBio/goquery) [![Sourcegraph Badge](https://sourcegraph.com/github.com/PuerkitoBio/goquery/-/badge.svg)](https://sourcegraph.com/github.com/PuerkitoBio/goquery?badge)
 
