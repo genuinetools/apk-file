@@ -132,17 +132,17 @@ func getFilesInfo(d *goquery.Document) []fileInfo {
 		rows.Each(func(i int, s *goquery.Selection) {
 			switch i {
 			case 0:
-				f.path = s.Text()
+				f.path = strings.TrimSpace(s.Text())
 			case 1:
-				f.pkg = s.Text()
+				f.pkg = strings.TrimSpace(s.Text())
 			case 2:
-				f.branch = s.Text()
+				f.branch = strings.TrimSpace(s.Text())
 			case 3:
-				f.repo = s.Text()
+				f.repo = strings.TrimSpace(s.Text())
 			case 4:
-				f.arch = s.Text()
+				f.arch = strings.TrimSpace(s.Text())
 			default:
-				logrus.Warnf("Unmapped value for column %d with value %s", i, s.Text())
+				logrus.Warnf("Unmapped value for column %d with value %s", i, strings.TrimSpace(s.Text()))
 			}
 		})
 		files = append(files, f)
