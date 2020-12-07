@@ -33,7 +33,7 @@ var (
 
 	debug bool
 
-	validArches = []string{"x86", "x86_64", "armhf"}
+	validArches = []string{"x86", "x86_64", "armhf", "armv7", "aarch64", "ppc64le", "s390x", "mips64"}
 	validRepos  = []string{"main", "community", "testing"}
 )
 
