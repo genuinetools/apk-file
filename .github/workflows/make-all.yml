@@ -5,7 +5,7 @@ jobs:
     name: make all
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: make all
         uses: docker://golang:latest
         with:
